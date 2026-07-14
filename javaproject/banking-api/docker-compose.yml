@@ -1,4 +1,4 @@
-# version: '3.9'
+#version: '3.9'
 
 services:
   postgres:
@@ -9,7 +9,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: banking_api_dev
+      POSTGRES_DB: banking_app_dev
 
     ports:
       - "5432:5432"
@@ -18,7 +18,7 @@ services:
       - pgdata:/var/lib/postgresql/data
 
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d banking_api_dev"]
+      test: ["CMD-SHELL", "pg_isready -U postgres -d banking_app_dev"]
       interval: 30s
       timeout: 10s
       retries: 5
@@ -34,12 +34,10 @@ services:
       postgres:
         condition: service_healthy
 
-    environment:
-      SPRING_CLOUD_CONFIG_ENABLED: "true"
     # environment:
-    #   SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/banking_api_dev
+    #   SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/niitprodcustomerdb
     #   SPRING_DATASOURCE_USERNAME: postgres
-    #   SPRING_DATASOURCE_PASSWORD: startmeup
+    #   SPRING_DATASOURCE_PASSWORD: postgres
 
     deploy:
       restart_policy:

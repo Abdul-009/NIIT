@@ -6,13 +6,9 @@ import net_banking_api.banking_api.banking.entity.Account;
 public class AccountMapper {
 
     public static Account mapToAccount(AccountDto accountDto){
-        Long id = accountDto.getId();
-        if (id != null && id == 0L) {
-            id = null;
-        }
 
         Account account = new Account(
-            id,
+            accountDto.getId(),
             accountDto.getAccountNumber(),
             accountDto.getAccountType(),
             accountDto.getAccountHolderName(),
@@ -20,6 +16,7 @@ public class AccountMapper {
         );
 
         return account;
+
     }
 
     public static AccountDto mapToAccountDto(Account account){
